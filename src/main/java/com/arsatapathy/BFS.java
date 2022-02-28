@@ -32,5 +32,62 @@ public class BFS {
         graph.put(3, List.of(3));
 
         search(graph, 2);
+
+        System.out.println();
+
+        System.out.println(shortestDistance(graph, 0, 3));
+        System.out.println(shortestDistance(graph, 0, 1));
+        System.out.println(shortestDistance(graph, 1, 0));
+        System.out.println(shortestDistance(graph, 1, 2));
+        System.out.println(shortestDistance(graph, 2, 0));
+        System.out.println(shortestDistance(graph, 0, 2));
+
+    }
+
+    static class Node {
+        private int data;
+        private int distance;
+
+        Node() {
+            data = 0;
+            distance = 0;
+        }
+
+        Node(int data) {
+            this.data = data;
+            distance = 0;
+        }
+
+        Node(int data, int distance) {
+            this.data = data;
+            this.distance = distance;
+        }
+    }
+
+    public static int shortestDistance(Map<Integer, List<Integer>> graph, int start, int destination) {
+        Set<Integer> visited = new HashSet<>();
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(new Node(start));
+
+        while(!queue.isEmpty()) {
+            Node current = queue.remove();
+
+            if (current.data == destination) {
+                return current.distance;
+            }
+
+            if (visited.contains(current.data)) {
+                continue;
+            } else {
+                visited.add(current.data);
+            }
+
+            for(Integer neighbour :graph.get(current.data)) {
+                queue.add(new Node(neighbour, current.distance + 1));
+            }
+        }
+
+        return 0;
     }
 }
