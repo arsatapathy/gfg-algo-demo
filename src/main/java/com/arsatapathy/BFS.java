@@ -5,7 +5,7 @@ import java.util.*;
 public class BFS {
 
     public static void search(Map<Integer, List<Integer>> graph, int start) {
-        Stack<Integer> visited = new Stack<>();
+        Set<Integer> visited = new HashSet<>();
 
         Queue<Integer> queue = new LinkedList<>();
 
@@ -13,7 +13,7 @@ public class BFS {
 
         while(!queue.isEmpty()) {
             Integer current = queue.remove();
-            System.out.println(current);
+            System.out.print(current + " ");
             visited.add(current);
             for(Integer neighbour :graph.get(current)) {
                 if (!visited.contains(neighbour)) {
