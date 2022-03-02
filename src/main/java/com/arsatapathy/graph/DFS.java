@@ -22,6 +22,19 @@ public class DFS {
         }
     }
 
+    public static void traverse(Map<Integer, List<Integer>> graph, Integer start, Set<Integer> visited) {
+
+        if (!visited.contains(start)) {
+            System.out.print(start + " ");
+            visited.add(start);
+
+            for (Integer neighbour :graph.get(start))  {
+                traverse(graph, neighbour, visited);
+            }
+        }
+
+    }
+
     public static void main(String... args){
 
         Map<Integer, List<Integer>> graph = new HashMap<>();
@@ -31,6 +44,15 @@ public class DFS {
         graph.put(2, List.of(0,3));
         graph.put(3, List.of(3));
 
+        /*
+        *
+        *
+        *
+        *
+        * */
+
         search(graph, 2);
+        System.out.println();
+        traverse(graph, 2, new HashSet<>());
     }
 }
