@@ -1,4 +1,4 @@
-package com.arsatapathy;
+package com.arsatapathy.graph;
 
 import java.util.*;
 
